@@ -47,7 +47,9 @@ configure_file(
 )
 
 set(PLUGIN_SOURCES
-	src/plugin-main.c)
+	src/obs-audio-pan-filter.c
+	src/stereo-pan-filter.c
+)
 
 set(PLUGIN_HEADERS
 	src/plugin-macros.generated.h)
