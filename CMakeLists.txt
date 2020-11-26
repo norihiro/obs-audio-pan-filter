@@ -104,11 +104,24 @@ if(WIN32)
 	set(RELEASE_DIR "${PROJECT_SOURCE_DIR}/release")
 
     add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-        COMMAND "${CMAKE_COMMAND}" -E make_directory "${RELEASE_DIR}/data/obs-plugins/${CMAKE_PROJECT_NAME}" "${RELEASE_DIR}/obs-plugins/${ARCH_NAME}"
+        # If config is Release or RelWithDebInfo, package release files
+        COMMAND if $<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>>==1 (
+            "${CMAKE_COMMAND}" -E make_directory
+                "${RELEASE_DIR}/data/obs-plugins/${CMAKE_PROJECT_NAME}"
+                "${RELEASE_DIR}/obs-plugins/${ARCH_NAME}"
+        )
 
-        COMMAND "${CMAKE_COMMAND}" -E copy_directory "${PROJECT_SOURCE_DIR}/data" "${RELEASE_DIR}/data/obs-plugins/${CMAKE_PROJECT_NAME}"
+        COMMAND if $<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>>==1 (
+            "${CMAKE_COMMAND}" -E copy_directory
+                "${PROJECT_SOURCE_DIR}/data"
+                "${RELEASE_DIR}/data/obs-plugins/${CMAKE_PROJECT_NAME}"
+        )
 
-        COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:${CMAKE_PROJECT_NAME}>" "${RELEASE_DIR}/obs-plugins/${ARCH_NAME}/"
+        COMMAND if $<OR:$<CONFIG:Release>,$<CONFIG:RelWithDebInfo>>==1 (
+            "${CMAKE_COMMAND}" -E copy
+                "$<TARGET_FILE:${CMAKE_PROJECT_NAME}>"
+                "${RELEASE_DIR}/obs-plugins/${ARCH_NAME}"
+        )
 
         # If config is RelWithDebInfo, copy the pdb file
         COMMAND if $<CONFIG:RelWithDebInfo>==1 (
