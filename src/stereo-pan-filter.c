@@ -51,6 +51,8 @@ static void sp_update(void *data, obs_data_t *s)
 	double gainR = db_to_mul(obs_data_get_double(s, "gainR")) * M_SQRT1_2;
 	double panL = obs_data_get_double(s, "panL") * (M_PI_4/100.0);
 	double panR = obs_data_get_double(s, "panR") * (M_PI_4/100.0);
+	if (obs_data_get_bool(s, "invertL")) gainL = -gainL;
+	if (obs_data_get_bool(s, "invertR")) gainR = -gainR;
 
 	// left inputs
 	sp->gain[0][0] = gainL * (cos(panL) - sin(panL));
@@ -108,10 +110,14 @@ static obs_properties_t *sp_properties(void *data)
 
 	p = obs_properties_add_float_slider(prop, "panL", obs_module_text("Pan (Left)"), -100.0, +100.0, 1.0);
 
+	p = obs_properties_add_bool(prop, "invertL", obs_module_text("Invert (Left)"));
+
 	p = obs_properties_add_float_slider(prop, "gainR", obs_module_text("Gain (Right)"), -80.0, +30.0, 1.0);
 	obs_property_float_set_suffix(p, " dB");
 
 	p = obs_properties_add_float_slider(prop, "panR", obs_module_text("Pan (Right)"), -100.0, +100.0, 1.0);
+
+	p = obs_properties_add_bool(prop, "invertR", obs_module_text("Invert (Right)"));
 
 	return prop;
 }
