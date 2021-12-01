@@ -11,8 +11,8 @@ This is a simple plugin to control stereo pan of audio source in OBS Studio.
 
 ### Linux
 ```
-git clone https://github.com/norihiro/obs-command-source.git
-cd obs-command-source
+git clone https://github.com/norihiro/obs-audio-pan-filter
+cd obs-audio-pan-filter
 mkdir build && cd build
 cmake \
 	-DLIBOBS_INCLUDE_DIR="<path to the libobs sub-folder in obs-studio's source code>" \
@@ -23,8 +23,8 @@ sudo make install
 
 ### OS X
 ```
-git clone https://github.com/norihiro/obs-command-source.git
-cd obs-command-source
+git clone https://github.com/norihiro/obs-audio-pan-filter
+cd obs-audio-pan-filter
 mkdir build && cd build
 cmake \
 	-DLIBOBS_INCLUDE_DIR=<path to the libobs sub-folder in obs-studio's source code> \
@@ -32,5 +32,5 @@ cmake \
 	-DOBS_FRONTEND_LIB=<path to libobs-frontend-api.dylib> \
 	..
 make -j4
-# Copy command-source.so to the obs-plugins folder
+# Copy obs-audio-pan-filter.so to the obs-plugins folder
 ```
