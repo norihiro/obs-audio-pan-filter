@@ -49,10 +49,12 @@ static void sp_update(void *data, obs_data_t *s)
 
 	double gainL = db_to_mul(obs_data_get_double(s, "gainL")) * M_SQRT1_2;
 	double gainR = db_to_mul(obs_data_get_double(s, "gainR")) * M_SQRT1_2;
-	double panL = obs_data_get_double(s, "panL") * (M_PI_4/100.0);
-	double panR = obs_data_get_double(s, "panR") * (M_PI_4/100.0);
-	if (obs_data_get_bool(s, "invertL")) gainL = -gainL;
-	if (obs_data_get_bool(s, "invertR")) gainR = -gainR;
+	double panL = obs_data_get_double(s, "panL") * (M_PI_4 / 100.0);
+	double panR = obs_data_get_double(s, "panR") * (M_PI_4 / 100.0);
+	if (obs_data_get_bool(s, "invertL"))
+		gainL = -gainL;
+	if (obs_data_get_bool(s, "invertR"))
+		gainR = -gainR;
 
 	// left inputs
 	sp->gain[0][0] = gainL * (cos(panL) - sin(panL));
@@ -82,10 +84,12 @@ static struct obs_audio_data *sp_filter_audio(void *data, struct obs_audio_data 
 	const float gR2R = sp->gain[1][1];
 
 	for (size_t i = 0; i < audio->frames; i++) {
-		const register float iL = channels>0 ? adata[0][i] : 0.0f;
-		const register float iR = channels>1 ? adata[1][i] : 0.0f;
-		if (channels > 0) adata[0][i] = gL2L * iL + gR2L * iR;
-		if (channels > 1) adata[1][i] = gL2R * iL + gR2R * iR;
+		const float iL = channels > 0 ? adata[0][i] : 0.0f;
+		const float iR = channels > 1 ? adata[1][i] : 0.0f;
+		if (channels > 0)
+			adata[0][i] = gL2L * iL + gR2L * iR;
+		if (channels > 1)
+			adata[1][i] = gL2R * iL + gR2R * iR;
 	}
 
 	return audio;
