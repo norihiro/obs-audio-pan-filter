@@ -25,7 +25,7 @@ sudo make install
 ```
 You might need to adjust `CMAKE_INSTALL_LIBDIR` for your system.
 
-### OS X
+### macOS
 Make sure `libobsConfig.cmake` is found by cmake.
 Then run these commands.
 ```
