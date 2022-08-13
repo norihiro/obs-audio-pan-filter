@@ -4,6 +4,8 @@ project(obs-audio-pan-filter VERSION 0.2.0)
 
 set(PLUGIN_AUTHOR "Norihiro Kamae")
 set(MACOS_BUNDLEID "net.nagater.obs-audio-pan-filter")
+set(MACOS_PACKAGE_UUID "96C10C4D-7B4E-4CFD-80B9-350D917CF0F8")
+set(MACOS_INSTALLER_UUID "AF2DA056-B6C2-48E4-AE39-B1ADE3F31C78")
 set(LINUX_MAINTAINER_EMAIL "norihiro@nagater.net")
 
 # TAKE NOTE: No need to edit things past this point
