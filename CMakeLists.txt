@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(obs-audio-pan-filter VERSION 0.2.1)
+project(obs-audio-pan-filter VERSION 0.2.2)
 
 set(PLUGIN_AUTHOR "Norihiro Kamae")
 set(MACOS_BUNDLEID "net.nagater.obs-audio-pan-filter")
