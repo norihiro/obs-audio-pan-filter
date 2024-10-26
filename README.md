@@ -1,4 +1,4 @@
-# OBS Audio Pan Filter
+# Audio Pan Filter plugin for OBS Studio
 
 ## Introduction
 
